@@ -6,7 +6,7 @@ var path = require('path');
 
 // Variables
 var mongoURI = process.env.MONGODB_URI || 'mongodb://localhost:27017/cam';
-var port = process.env.PORT || 3000;
+var port = process.env.PORT || 8888;
 
 // Connect to MongoDB
 mongoose.connect(mongoURI, { useNewUrlParser: true }, function(err) {
@@ -47,11 +47,7 @@ app.use(function(err, req, res, next) {
     res.json(err_res);
 });
 
-app.listen(port, function(err) {
-    if (err) throw err;
-    console.log(`Express server listening on port ${port}, in ${env} mode`);
-    console.log(`Backend: http://localhost:${port}/api/`);
-    console.log(`Frontend: http://localhost:${port}/`);
-});
+console.log('Listening on 8888');
+app.listen(8888);
 
 module.exports = app;
