@@ -1,0 +1,102 @@
+{
+	"info": {
+		"_postman_id": "8b99263e-f6e2-4270-a094-584518a74948",
+		"name": "express-template",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "http://localhost:3000/api",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "b3328e4d-4a69-4f0c-ba12-e9881070f8fd",
+						"type": "text/javascript",
+						"exec": [
+							"// 1) Create an environment in Postman:",
+							"// https://www.getpostman.com/docs/v6/postman/environments_and_globals/manage_environments",
+							"",
+							"// 2) Save reponse data in environment variable",
+							"var jsonData = JSON.parse(responseBody);",
+							"postman.setEnvironmentVariable(\"message\", jsonData.message);",
+							"",
+							"// 3) Use variable in later requests via {{variable}}",
+							"// GET http://localhost:3000/camels/{{message}}",
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json"
+					}
+				],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:3000/api",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:3000/api/camels",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "b3328e4d-4a69-4f0c-ba12-e9881070f8fd",
+						"type": "text/javascript",
+						"exec": [
+							"// 1) Create an environment in Postman:",
+							"// https://www.getpostman.com/docs/v6/postman/environments_and_globals/manage_environments",
+							"",
+							"// 2) Save reponse data in environment variable",
+							"var jsonData = JSON.parse(responseBody);",
+							"postman.setEnvironmentVariable(\"message\", jsonData.message);",
+							"",
+							"// 3) Use variable in later requests via {{variable}}",
+							"// GET http://localhost:3000/camels/{{message}}",
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json"
+					}
+				],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:3000/api/camels",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"camels"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
