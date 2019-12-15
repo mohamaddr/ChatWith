@@ -1,3 +1,4 @@
+var path = require('path'); 
 
 var express = require("express");
 var router = express.Router();
@@ -10,12 +11,12 @@ var client_id = process.env.SPOTIFY_CLIENT_ID; // Your client id
 var client_secret = process.env.SPOTIFY_CLIENT_SECRET; // Your secret
 var redirect_uri = 'http://localhost:8888/callback'; // Your redirect uri
 
-router.get("/api", function(req, res) {
+// router.get("/api", function(req, res) {
 
-  console.log(process.env.SPOTIFY_CLIENT_SECRET);
-  console.log( process.env.MONGODB_URI );
-  res.json({ message: "Welcome to the backend project!" });
-});
+//   console.log(process.env.SPOTIFY_CLIENT_SECRET);
+//   console.log( process.env.MONGODB_URI );
+//   res.json({ message: "Welcome to the backend project!" });
+// });
 
 
 
@@ -123,6 +124,7 @@ router.get('/callback', function(req, res) {
   request.post(authOptions, function(error, response, body) {
 
     var access_token = body.access_token
+    // reddirect the page to the next >> 
     let uri = 'http://localhost:8888/'
     res.redirect(uri + '?access_token=' + access_token)
 
@@ -147,14 +149,14 @@ router.get('/callback', function(req, res) {
 
 
 //All other routes redirect to the index.html
-// router.route("/pro").get(function(req, res) {
-//   res.sendfile(req.app.get("appPath") + "/profile.html");
-// });
+router.route("/pro").get(function(req, res) {
+  res.sendfile(req.app.get("appPath") + "/Login.html");
+});
 
-// router.route("/*").get(function(req, res) {
-//   var relativeAppPath = req.app.get("appPath");
-//   var absoluteAppPath = path.resolve(relativeAppPath);
-//   res.sendFile(absoluteAppPath + "/profile.html");
-// });
+router.route("/*").get(function(req, res) {
+  var relativeAppPath = req.app.get("appPath");
+  var absoluteAppPath = path.resolve(relativeAppPath);
+  res.sendFile(absoluteAppPath + "/Login.html");
+});
 
 module.exports = router;

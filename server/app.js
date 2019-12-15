@@ -50,6 +50,13 @@ app.use(function(err, req, res, next) {
 });
 
 console.log('Listening on 8888');
-app.listen(8888);
+
+
+app.listen(port, function(err) {
+    if (err) throw err;
+    console.log(`Express server listening on port ${port}, in ${env} mode`);
+    console.log(`Backend: http://localhost:${port}/api/`);
+    console.log(`Frontend: http://localhost:${port}/`);
+});
 
 module.exports = app;
