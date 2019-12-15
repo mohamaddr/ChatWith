@@ -27,6 +27,7 @@
     "vue-router": "^3.0.1"
   },
   "devDependencies": {
+    "dotenv": "^8.2.0",
     "newman": "^4.1.0",
     "nodemon": "^1.18.4",
     "vueify": "^9.4.1"
