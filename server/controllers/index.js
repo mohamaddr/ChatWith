@@ -14,7 +14,7 @@ scopes = ['user-read-private', 'user-read-email','playlist-modify-public','playl
 var spotifyApi = new SpotifyWebApi({
   clientId: process.env.SPOTIFY_CLIENT_ID,
   clientSecret: process.env.SPOTIFY_CLIENT_SECRET,
-  redirectUri: 'http://localhost:8888/callback',
+  redirectUri: process.env.SPOTIFY_REDIRECT_URI,
 });
 
 
@@ -23,15 +23,21 @@ var spotifyApi = new SpotifyWebApi({
 
 
 
-  // your application requests authorization
 
+
+
+  
+ 
+
+  //  application requests authorization
   router.get('/login', function(req, res) {
+    console.log(spotifyApi.redirectUri);
     res.redirect('https://accounts.spotify.com/authorize?' +
       querystring.stringify({
         response_type: 'code',
-        client_id: client_id,
+        client_id:process.env.SPOTIFY_CLIENT_ID,
         scope: scopes,
-        redirect_uri:redirect_uri
+        redirect_uri:process.env.SPOTIFY_REDIRECT_URI
       }))
   });
   
@@ -50,8 +56,7 @@ var spotifyApi = new SpotifyWebApi({
     }
   });
 
-  // Insert routes below
-  
+// Insert routes below
   router.get('/userinfo', async (req,res) => {
     try {
       var result = await spotifyApi.getMe();
