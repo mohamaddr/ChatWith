@@ -7,18 +7,18 @@ var morgan = require('morgan');
 var path = require('path');
 
 // Variables
-var mongoURI = process.env.MONGODB_URI || 'mongodb://localhost:27017/cam';
+//var mongoURI = process.env.MONGODB_URI || 'mongodb://localhost:27017/cam';
 var port = process.env.PORT || 8888;
 
 // Connect to MongoDB
-mongoose.connect(mongoURI, { useNewUrlParser: true }, function(err) {
-    if (err) {
-        console.error(`Failed to connect to MongoDB with URI: ${mongoURI}`);
-        console.error(err.stack);
-        process.exit(1);
-    }
-    console.log(`Connected to MongoDB with URI: ${mongoURI}`);
-});
+// mongoose.connect(mongoURI, { useNewUrlParser: true }, function(err) {
+//     if (err) {
+//         console.error(`Failed to connect to MongoDB with URI: ${mongoURI}`);
+//         console.error(err.stack);
+//         process.exit(1);
+//     }
+//     console.log(`Connected to MongoDB with URI: ${mongoURI}`);
+// });
 
 // Create Express app
 var app = express();
