@@ -8,7 +8,7 @@ var request = require('request'); // "Request" library
 var querystring = require('querystring');
 
 var SpotifyWebApi = require('spotify-web-api-node');
-scopes = ['user-read-private', 'user-read-email','playlist-modify-public','playlist-modify-private']
+var scopes = 'playlist-modify-public user-modify-playback-state user-read-playback-state user-read-private user-read-email playlist-modify-private playlist-read-collaborative user-read-currently-playing';
 
 
 var spotifyApi = new SpotifyWebApi({
@@ -17,21 +17,13 @@ var spotifyApi = new SpotifyWebApi({
   redirectUri: process.env.SPOTIFY_REDIRECT_URI,
 });
 
-
-
-
-
-
-
-
-
-
-  
- 
+// random nummbers from 1 to max
+function getRandomInt(max) {
+  return Math.floor(Math.random() * Math.floor(max));
+}
 
   //  application requests authorization
   router.get('/login', function(req, res) {
-    console.log(spotifyApi.redirectUri);
     res.redirect('https://accounts.spotify.com/authorize?' +
       querystring.stringify({
         response_type: 'code',
@@ -41,6 +33,8 @@ var spotifyApi = new SpotifyWebApi({
       }))
   });
   
+
+
   router.get('/callback', async (req,res) => {
     const { code } = req.query;
     console.log(code)
@@ -49,7 +43,10 @@ var spotifyApi = new SpotifyWebApi({
       const { access_token, refresh_token } = data.body;
       spotifyApi.setAccessToken(access_token);
       spotifyApi.setRefreshToken(refresh_token);
-     // redirect to another page 
+
+  
+    // redirect to another page 
+     console.log(spotifyApi.getAccessToken());
       res.redirect('http://localhost:8888/');
     } catch(err) {
       res.redirect('/#/error/invalid token');
@@ -77,21 +74,51 @@ router.get('/userPlaylists', async (req,res) => {
   }
 });
 
+
+
+
 // retrive the playlist by the name, then get all tracks in the playlist
+// play the song randomly in the selected palylist
 router.get('/playlist/:name', async (req,res) => {
   try {
     var name = req.params.name;
     var resultOfplaylists = await spotifyApi.searchPlaylists(name)
-    console.log(resultOfplaylists.body.playlists.items[0].id);
+    //console.log(resultOfplaylists.body.playlists.items[0].id);
     var playlistOne_id=resultOfplaylists.body.playlists.items[0].id;
-
+    console.log(resultOfplaylists.body.playlists.items[0].name);
     var result = await spotifyApi.getPlaylistTracks(playlistOne_id);
+ // the length of the playlist
+console.log(result.body.items.length);
+    // get all avalible devices 
+    // var myDevice_id = await spotifyApi.getMyDevices();
+    // console.log(myDevice_id.body.devices[0].id);
+   
+    var a =  await  spotifyApi.play({uris:[`spotify:track:${result.body.items[getRandomInt(result.body.items.length)].track.id}`]});
+    
 
     res.status(200).send(result.body);
   } catch (err) {
     res.status(400).send(err)
   }
 });
+
+
+// for testign ...
+router.get('/play', async (req,res) => {
+  try {
+  
+    const id = '54flyrjcdnQdco7300avMJ';
+    var result = await  spotifyApi.play({uris:[`spotify:track:${id}`]});
+
+    console.log(result.body);
+    res.status(200).send(result.body);
+  } catch (err) {
+    res.status(400).send(err)
+  }
+});
+
+
+
 
 
 
