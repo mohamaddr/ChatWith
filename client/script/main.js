@@ -8,7 +8,7 @@ var app = new Vue({
         logIn: function(){
           
             
-          axios.get('/login/')
+          axios.get('/login')
           .then((response) => {
                 console.log(response.data);
               })

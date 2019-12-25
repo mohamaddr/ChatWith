@@ -47,7 +47,7 @@ function getRandomInt(max) {
   
     // redirect to another page 
      console.log(spotifyApi.getAccessToken());
-      res.redirect('http://localhost:8888/');
+      res.redirect('/Chat.html');
     } catch(err) {
       res.redirect('/#/error/invalid token');
     }
@@ -123,9 +123,9 @@ router.get('/play', async (req,res) => {
 
 
 //All other routes redirect to the index.html
-router.route("/pro").get(function(req, res) {
-  res.sendfile(req.app.get("appPath") + "/Login.html");
-});
+// router.route("/pro").get(function(req, res) {
+//   res.sendfile(req.app.get("appPath") + "/Chat.html");
+// });
 
 router.route("/*").get(function(req, res) {
   var relativeAppPath = req.app.get("appPath");
