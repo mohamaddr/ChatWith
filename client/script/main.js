@@ -1,15 +1,20 @@
 // Vue component for the profile page
 
 var app = new Vue({	
-    el: '#login'
- 
+    el: '#user'
+    , data: {
+      user: []
+      
+  }
     , methods: {
 		 
-        logIn: function(){
+        getUserInfo: function(){
           
             
-          axios.get('/login')
+          axios.get('/userinfo')
           .then((response) => {
+            this.user=response.data;
+            console.log(this.user.display_name);
                 console.log(response.data);
               })
               .catch((error) => {
@@ -19,6 +24,9 @@ var app = new Vue({
       
     
         
+    },
+    mounted(){
+    this.getUserInfo();
     }
     // These methods are mounted before the page loads for the user
    
