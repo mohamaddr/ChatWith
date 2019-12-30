@@ -123,11 +123,11 @@ router.get('/play', async (req,res) => {
 
 
 //All other routes redirect to the index.html
-// router.route("/pro").get(function(req, res) {
+// router.route("/").get(function(req, res) {
 //   res.sendfile(req.app.get("appPath") + "/Chat.html");
 // });
 
-router.route("/*").get(function(req, res) {
+router.route("/").get(function(req, res) {
   var relativeAppPath = req.app.get("appPath");
   var absoluteAppPath = path.resolve(relativeAppPath);
   res.sendFile(absoluteAppPath + "/Login.html");

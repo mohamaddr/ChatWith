@@ -1,8 +1,7 @@
 var express = require('express');
 require('dotenv').config()
-
-var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
+var bodyParser = require('body-parser');
 var morgan = require('morgan');
 var path = require('path');
 // Create Express app
@@ -10,19 +9,12 @@ var app = express();
 let http = require('http').Server(app);
 let io = require('socket.io')(http);
 
-// Variables
-//var mongoURI = process.env.MONGODB_URI || 'mongodb://localhost:27017/cam';
-var port = process.env.PORT || 8888;
 
-// Connect to MongoDB
-// mongoose.connect(mongoURI, { useNewUrlParser: true }, function(err) {
-//     if (err) {
-//         console.error(`Failed to connect to MongoDB with URI: ${mongoURI}`);
-//         console.error(err.stack);
-//         process.exit(1);
-//     }
-//     console.log(`Connected to MongoDB with URI: ${mongoURI}`);
-// });
+var port = process.env.PORT || 8888;
+console.log('The value of PORT is:', process.env.PORT);
+
+
+
 
 
 // Parse requests of content-type 'application/json'

@@ -9,6 +9,13 @@
 
 
 
+
+
+
+  <link rel="stylesheet" type="text/css" href="assets/css/csshake.min.css">
+
+
+
   <style>
     body {
         background-color: #FBAB7E;
@@ -28,58 +35,12 @@
       font-size: 50px;
     }
 
+    .middle{
+      margin: 30px;
+      display: inline;
+    }
 
-    L {
-        margin: 10px;
-        cursor: pointer;
-        font-size: 30px;
-        display: inline;
-     
-      }
-      L:hover {
-        font-size: 50px;
-      }
-        W {
-        margin: 10px;
-        cursor: pointer;
-        font-size: 30px;
-        display: inline;
-     
-      }
-      W:hover {
-        font-size: 50px;
-      }
 
-      R {
-        margin: 10px;
-        cursor: pointer;
-        font-size: 30px;
-        display: inline;
-     
-      }
-      R:hover {
-        font-size: 50px;
-      }
-      T {
-        margin: 10px;
-        cursor: pointer;
-        font-size: 30px;
-        display: inline;
-     
-      }
-      T:hover {
-        font-size: 50px;
-      }
-      D {
-        margin: 10px;
-        cursor: pointer;
-        font-size: 30px;
-        display: inline;
-     
-      }
-      D:hover {
-        font-size: 50px;
-      }
 
 
 
@@ -94,25 +55,10 @@
       
       <div class="chatArea">
       
-        <L>💖</L>
-        <p>🥳</p>
-        <R>🤠</R>
-        <p>🔥</p>
-        <p>😭</p>
-        <D>😈</D>
-        <p>😻</p>
-        <p>🤘</p>
-        <T>🤖</T>
-        <T>💪</T>
-        <T>🤪</T>
-        <W>😃</W>
-        <G>🎸</G>
-        <G>🎸</G>
-        <W>🇸🇪</W>
-        <W>🎹</W>
-        <W>🎄</W>
-       
-       
+
+       <div class="transbox">
+        <div class="p" id="emoji-div"></div>
+      </div>
         <ul class="messages"></ul>
       
       </div>
@@ -149,6 +95,12 @@
   <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
 
   <script src="script/main.js"></script>
+
+
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="assets/js/emoji.js"></script>
+
   <script>
     $( "L" ).click(function() {
      
@@ -165,9 +117,41 @@
     });
     </script>
 
+    
+
+<script>
+  var emojis = ['💖','🤠','crying','🤘','🇸🇪','happy', '😈','🤖','🎄','💪','inlove','🥰','🔥','🤪','😃'];
+  $(function() {
+    $("#emoji-div").emoji({callback: notifyMe,
+      opacity: 0.9,
+      emojis: emojis,
+      event: 'click', 
+      animation:'shake-chunk',
+      width: '40px',
+      count: 0,
+    });
+});
 
 
+</script>
+<script>function notifyMe(event, value){
+  value=value-1;
+  if(value==0){
+    axios.get('/playlist/love')
+      .then((response) => {
+         this.user=response.data;
+         console.log(this.user.display_name);
+            console.log(response.data);
+          })
+          .catch((error) => {
+            console.log(error);
+          }); 
+ 
+  
+  }
+  console.log(emojis[value])
 
+}</script>
 
 
 
