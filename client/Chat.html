@@ -20,32 +20,10 @@
     body {
         background-color: #FBAB7E;
         background-image: linear-gradient(62deg, #FBAB7E 0%, #F7CE68 70%);
-        
-        
-        
+         
     }
-    p {
-      margin: 30px;
-      cursor: pointer;
-      font-size: 30px;
-      display: inline;
    
-    }
-    p:hover {
-      font-size: 50px;
-    }
 
-    .middle{
-      margin: 30px;
-      display: inline;
-    }
-
-
-
-
-
-
-    
     </style>
 </head>
 <body>
@@ -101,21 +79,7 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="assets/js/emoji.js"></script>
 
-  <script>
-    $( "L" ).click(function() {
-     
-      console.log("clicked");
-      axios.get('/playlist/love')
-      .then((response) => {
-         this.user=response.data;
-         console.log(this.user.display_name);
-            console.log(response.data);
-          })
-          .catch((error) => {
-            console.log(error);
-          });
-    });
-    </script>
+ 
 
     
 
@@ -136,20 +100,136 @@
 </script>
 <script>function notifyMe(event, value){
   value=value-1;
+  console.log(value);
   if(value==0){
     axios.get('/playlist/love')
       .then((response) => {
-         this.user=response.data;
-         console.log(this.user.display_name);
             console.log(response.data);
           })
           .catch((error) => {
             console.log(error);
           }); 
- 
-  
+  }else if (value==1){
+    console.log("rock")
+    axios.get('/playlist/rock and roll')
+    .then((response) => {
+          console.log(response.data);
+        })
+        .catch((error) => {
+          console.log(error);
+        }); 
+  }else if(value==2){
+    axios.get('/playlist/sad')
+    .then((response) => {
+          console.log(response.data);
+        })
+        .catch((error) => {
+          console.log(error);
+        }); 
+  }else if (value==3){
+    axios.get('/playlist/Metal')
+    .then((response) => {
+          console.log(response.data);
+        })
+        .catch((error) => {
+          console.log(error);
+        }); 
+  }else if(value==4){
+    axios.get('/playlist/swedish')
+      .then((response) => {
+            console.log(response.data);
+          })
+          .catch((error) => {
+            console.log(error);
+          }); 
+
+  }else if(value==5){
+    axios.get('/playlist/Happy')
+    .then((response) => {
+          console.log(response.data);
+        })
+        .catch((error) => {
+          console.log(error);
+        }); 
+  }else if (value==6){
+    axios.get('/playlist/heavy metal')
+    .then((response) => {
+          console.log(response.data);
+        })
+        .catch((error) => {
+          console.log(error);
+        }); 
+  }else if (value==7){
+    axios.get('/playlist/trance')
+    .then((response) => {
+          console.log(response.data);
+        })
+        .catch((error) => {
+          console.log(error);
+        }); 
+    
+  }else if (value==8){
+    axios.get('/playlist/Christmas')
+    .then((response) => {
+          console.log(response.data);
+        })
+        .catch((error) => {
+          console.log(error);
+        }); 
+  }else if (value==9){
+    axios.get('/playlist/Gym')
+    .then((response) => {
+          console.log(response.data);
+        })
+        .catch((error) => {
+          console.log(error);
+        }); 
+  }else if (value==10){
+    axios.get('/playlist/inlove')
+    .then((response) => {
+          console.log(response.data);
+        })
+        .catch((error) => {
+          console.log(error);
+        }); 
+  }else if (value==11){
+    axios.get('/playlist/lover')
+    .then((response) => {
+          console.log(response.data);
+        })
+        .catch((error) => {
+          console.log(error);
+        }); 
+  }else if (value==12){
+    axios.get('/playlist/TOP 10')
+    .then((response) => {
+          console.log(response.data);
+        })
+        .catch((error) => {
+          console.log(error);
+        }); 
+  }else if (value==13){
+    axios.get('/playlist/Crazy')
+    .then((response) => {
+          console.log(response.data);
+        })
+        .catch((error) => {
+          console.log(error);
+        }); 
+  }else if (value==14){
+    axios.get('/playlist/Smile')
+    .then((response) => {
+          console.log(response.data);
+        })
+        .catch((error) => {
+          console.log(error);
+        }); 
   }
-  console.log(emojis[value])
+
+
+
+
+
 
 }</script>
 
