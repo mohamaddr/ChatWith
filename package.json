@@ -1,19 +1,15 @@
 {
-  "name": "express-template",
+  "name": "express",
   "version": "0.1.0",
   "engines": {
     "node": "10.7.0"
   },
   "private": true,
-  "description": "ExpressJS with Mongoose Template",
+  "description": "",
   "main": "server/app.js",
   "scripts": {
     "start": "node ./server/app.js",
     "test": "newman run ./tests/api-tests.postman.json"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://gitlab.com/grischal/express-template.git"
   },
   "dependencies": {
     "@sendgrid/mail": "^6.4.0",
